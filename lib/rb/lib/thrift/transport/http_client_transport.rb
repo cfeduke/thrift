@@ -47,8 +47,8 @@ module Thrift
     def flush
       http = Net::HTTP.new @url.host, @url.port
       http.use_ssl = @url.scheme == "https"
-      resp, data = http.post(@url.request_uri, @outbuf, @headers)
-      @inbuf = StringIO.new data
+      resp = http.post(@url.request_uri, @outbuf, @headers)
+      @inbuf = StringIO.new resp.body
       @outbuf = ""
     end
   end
