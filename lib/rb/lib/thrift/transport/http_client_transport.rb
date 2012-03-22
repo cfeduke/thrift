@@ -36,7 +36,7 @@ module Thrift
     def read(sz); @inbuf.read sz end
     
     def write(buf)
-      @outbuf << buf.force_encoding("utf-8")
+      @outbuf << buf.dup.force_encoding("utf-8")
     end
 
 
